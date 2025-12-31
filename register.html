@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online registrace – CUBP</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --red:#d32f2f;
+  --blue:#1e3a8a;
+  --light:#f4f6f8;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  background:var(--light);
+  font-family:Inter, Arial, sans-serif;
+  color:#111;
+}
+
+/* ===== HEADER ===== */
+.header{
+  position:fixed;
+  top:0;
+  width:100%;
+  height:90px;
+  background:rgba(255,255,255,.85);
+  backdrop-filter: blur(10px);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 60px;
+  box-shadow:0 4px 20px rgba(0,0,0,.05);
+  z-index:1000;
+  color:#111;
+}
+
+.logo{height:60px}
+
+nav{
+  display:flex;
+  gap:30px;
+}
+
+nav a{
+  text-decoration:none;
+  color:#111;
+  font-weight:700;
+}
+
+/* ===== HERO ===== */
+.hero{
+  padding-top:120px;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:46px;
+  color:var(--blue);
+  margin-bottom:15px;
+}
+
+.hero p{
+  max-width:800px;
+  margin:0 auto;
+  font-size:18px;
+  line-height:1.6;
+}
+
+/* ===== FORM WRAP ===== */
+.form-wrapper{
+  max-width:900px;
+  margin:60px auto;
+  background:white;
+  padding:60px;
+  border-radius:20px;
+  box-shadow:0 10px 40px rgba(0,0,0,.08);
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+}
+
+.form-group.full{
+  grid-column:1 / -1;
+}
+
+label{
+  font-weight:600;
+  margin-bottom:6px;
+}
+
+input, select{
+  padding:14px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:16px;
+}
+
+input:focus, select:focus{
+  outline:none;
+  border-color:var(--red);
+}
+
+.upload{
+  padding:25px;
+  border:2px dashed #ccc;
+  border-radius:15px;
+  text-align:center;
+  background:#fafafa;
+  cursor:pointer;
+}
+
+.upload input{
+  margin-top:10px;
+}
+
+.price{
+  background:#f4f6f8;
+  padding:20px;
+  border-radius:15px;
+  font-size:20px;
+  font-weight:700;
+  text-align:center;
+}
+
+.btn{
+  background:linear-gradient(135deg,var(--red),#ff5a5a);
+  color:white;
+  padding:16px;
+  border:none;
+  border-radius:12px;
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:800px){
+  .header{padding:0 20px;}
+  .form-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:32px;}
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <img src="logo.png" class="logo">
+  <nav>
+    <a href="index.html">Domů</a>
+    <a href="register.html">Registrace</a>
+    <a href="contact.html">Kontakt</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Online registrace do CUBP</h1>
+  <p>
+    Staňte se oficiálním členem Czech Union of Boxing Professionals.  
+    Registrací získáte možnost účastnit se profesionálních akcí, zápasů a být součástí oficiální struktury CUBP.
+  </p>
+</section>
+
+<section class="form-wrapper">
+<form action="/.netlify/functions/gopay" method="POST" enctype="multipart/form-data">
+
+<div class="form-grid">
+
+  <div class="form-group full">
+    <label>Typ registrace</label>
+    <select name="role" required>
+      <option value="">Vyberte...</option>
+      <option>Boxer</option>
+      <option>Trenér</option>
+      <option>Promotér</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Jméno a příjmení</label>
+    <input type="text" name="name" required>
+  </div>
+
+  <div class="form-group">
+    <label>Telefon</label>
+    <input type="tel" name="phone" required>
+  </div>
+
+  <div class="form-group">
+    <label>Email</label>
+    <input type="email" name="email" required>
+  </div>
+
+  <div class="form-group">
+    <label>Adresa</label>
+    <input type="text" name="address" required>
+  </div>
+
+  <div class="form-group full">
+    <label>Přílohy (max. 5 souborů – ID, licence, fotky, smlouvy)</label>
+    <div class="upload">
+      Nahrajte soubory
+      <input type="file" name="files[]" multiple accept=".jpg,.png,.pdf">
+    </div>
+  </div>
+
+  <div class="form-group full price">
+    Registrační poplatek: 2 000 Kč
+  </div>
+
+  <div class="form-group full">
+    <button type="submit" class="btn">
+      Pokračovat k platbě (GoPay)
+    </button>
+  </div>
+
+</div>
+
+<input type="hidden" name="amount" value="2000">
+
+</form>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Česká Unie Boxerů Profesionálů – Oficiální federace profesionálního boxu</title>
+
+<meta name="description"
+content="Česká Unie Boxerů Profesionálů (CUBP) je oficiální organizace profesionálního boxu v ČR. Registrace boxerů, trenérů a promotérů online. Oficiální licence, kalendář akcí a novinky." />
+
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://cubp.eu/">
+
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="css/style.css">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Česká Unie Boxerů Profesionálů">
+<meta property="og:description" content="Oficiální federace profesionálního boxu v České republice">
+<meta property="og:url" content="https://cubp.eu">
+<meta property="og:image" content="https://cubp.eu/hero.jpg">
+</head>
+
+<body>
+
+<header class="header">
+  <img src="logo.png" class="logo">
+
+  <nav id="menu">
+    <a href="index.html">Domů</a>
+    <a href="register.html">Registrace</a>
+    <a href="licenses.html">Licence</a>
+    <a href="calendar.html">Kalendář</a>
+    <a href="admin/admin.html">Admin</a>
+  </nav>
+
+  <div class="burger" id="burger">☰</div>
+</header>
+
+
+<section class="hero" style="background:url('hero.jpg') center/cover">
+  <div class="hero-text">
+    <h1>Bojuj. Vítěz. Reprezentuj Českou republiku.</h1>
+    <p>
+      Česká Unie Boxerů Profesionálů je oficiální organizací zastřešující profesionální box v České republice.  
+      Spojujeme špičkové sportovce, trenéry a promotéry do jedné silné a respektované platformy.
+    </p>
+  </div>
+</section>
+
+<section class="box">
+  <h2>Česká Unie Boxerů Profesionálů</h2>
+  <p>
+    CUBP je nezávislá profesionální boxerská unie, která vznikla s cílem vytvořit transparentní, profesionální a
+    mezinárodně respektovaný systém řízení profesionálního boxu v České republice.
+  </p>
+  <p>
+    Naším posláním je chránit sportovce, garantovat férové podmínky, podporovat rozvoj kariér boxerů
+    a vytvářet prostředí, kde se talent a tvrdá práce proměňují v úspěch.
+  </p>
+  <p>
+    Spolupracujeme s promotéry, kluby a trenéry a zajišťujeme licenční systém, kalendář akcí i dohled nad zápasy.
+  </p>
+</section>
+
+<section class="box">
+  <h2>Registrace boxerů, trenérů a promotérů</h2>
+  <p>
+    V CUBP mohou být registrováni profesionální boxeři, trenéři i promotéři.  
+    Celý proces probíhá plně online, rychle a bez zbytečné administrativy.
+  </p>
+  <p>
+    Po registraci a schválení získáte oficiální licenci CUBP, která vás opravňuje působit v profesionálním boxu
+    pod naší organizací a účastnit se schválených akcí.
+  </p>
+  <a class="btn" href="register.html">Spustit online registraci</a>
+</section>
+
+<section class="box">
+  <h2>Novinky z profesionálního boxu</h2>
+  <p>
+    Sledujte aktuální dění v českém i mezinárodním profesionálním boxu.  
+    Zde naleznete oficiální zprávy, oznámení, výsledky zápasů i informace o připravovaných akcích.
+  </p>
+  <div id="news" class="news"></div>
+</section>
+
+<section class="box">
+  <h2>Kontaktujte nás</h2>
+
+  <form class="contact-form" onsubmit="sendMsg(event)">
+    <div class="form-row">
+      <input type="text" placeholder="Jméno a příjmení" required>
+      <input type="email" placeholder="E-mail" required>
+    </div>
+
+    <div class="form-row">
+      <input type="tel" placeholder="Telefon">
+      <input type="text" placeholder="Předmět zprávy">
+    </div>
+
+    <textarea placeholder="Vaše zpráva..." required></textarea>
+
+    <button class="btn">Odeslat zprávu</button>
+    <span id="msg"></span>
+  </form>
+</section>
+
+<script src="js/app.js"></script>
+</body>
+</html>
