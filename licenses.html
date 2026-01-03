@@ -1,1 +1,79 @@
-<html><body><h2>Schválené licence</h2><table id='lic'></table><script src='js/app.js'></script></body></html>
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Licence – CUBP</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.licence-wrapper{
+  max-width:900px;
+  margin:140px auto 40px;
+  background:white;
+  padding:40px;
+  border-radius:20px;
+  box-shadow:0 10px 40px rgba(0,0,0,.08);
+}
+
+.licence-wrapper h1{
+  color:var(--blue);
+  margin-bottom:10px;
+}
+
+.licence-wrapper p{
+  margin-bottom:30px;
+  line-height:1.6;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th, td{
+  padding:14px;
+  border-bottom:1px solid #ddd;
+  text-align:left;
+}
+
+th{
+  background:#f4f6f8;
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <img src="logo.png" class="logo">
+  <nav id="menu">
+    <a href="index.html">Domů</a>
+    <a href="calendar.html">Kalendář</a>
+    <a href="licences.html">Licence</a>
+  </nav>
+  <div class="burger" id="burger">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<div class="licence-wrapper">
+  <h1>Udělené licence</h1>
+  <p>Seznam držitelů licencí CUBP vedený oficiálním svazem.</p>
+
+  <table>
+    <tr>
+      <th>Jméno</th>
+      <th>Druh licence</th>
+      <th>Datum udělení</th>
+    </tr>
+    <tr>
+      <td>Božan Vomáčka</td>
+      <td>Boxer</td>
+      <td>1. 1. 2026</td>
+    </tr>
+  </table>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
