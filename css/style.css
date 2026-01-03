@@ -234,4 +234,15 @@ input, textarea{
   }
 }
 
+/* === Fix viditelnosti hamburgeru na mobilu === */
+#burger span{
+    background:#111 !important;
+}
+
+@media(max-width:900px){
+    .header{
+        background: rgba(255,255,255,0.95);
+    }
+}
+
 
