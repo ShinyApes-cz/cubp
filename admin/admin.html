@@ -1,1 +1,145 @@
-<html><body><h2>Admin</h2><textarea id='news'></textarea><button onclick='saveNews()'>Uložit</button><script src='../js/app.js'></script></body></html>
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<title>Admin – CUBP</title>
+<style>
+body{
+  margin:0;
+  font-family: Inter, Arial;
+  background:#f4f6f8;
+}
+.login, .admin{
+  max-width:600px;
+  margin:80px auto;
+  background:white;
+  padding:40px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+h2{margin-top:0}
+input, textarea{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:16px;
+}
+button{
+  padding:12px 20px;
+  background:#1e3a8a;
+  color:white;
+  border:none;
+  border-radius:8px;
+  font-weight:700;
+  cursor:pointer;
+}
+button:hover{opacity:.9}
+.news-item{
+  margin-top:30px;
+  border-top:1px solid #ddd;
+  padding-top:20px;
+}
+.news-item img{
+  max-width:100%;
+  border-radius:8px;
+  margin-top:10px;
+}
+.hidden{display:none}
+</style>
+</head>
+
+<body>
+
+<div class="login" id="loginBox">
+  <h2>Admin přihlášení</h2>
+  <input id="user" placeholder="Admin ID">
+  <input id="pass" type="password" placeholder="Heslo">
+  <button onclick="login()">Přihlásit</button>
+  <p id="loginMsg" style="color:red"></p>
+</div>
+
+<div class="admin hidden" id="adminBox">
+  <h2>Správa novinek</h2>
+
+  <input id="title" placeholder="Nadpis novinky">
+  <textarea id="text" rows="5" placeholder="Text novinky"></textarea>
+  <input type="file" id="image">
+
+  <button onclick="addNews()">Uložit novinku</button>
+
+  <div id="newsList"></div>
+</div>
+
+<script>
+const USER="admin";
+const PASS="admin1";
+
+function login(){
+  const u=document.getElementById("user").value;
+  const p=document.getElementById("pass").value;
+  if(u===USER && p===PASS){
+    localStorage.setItem("adminLogged","1");
+    showAdmin();
+  } else {
+    document.getElementById("loginMsg").innerText="Špatné přihlašovací údaje";
+  }
+}
+
+function showAdmin(){
+  document.getElementById("loginBox").classList.add("hidden");
+  document.getElementById("adminBox").classList.remove("hidden");
+  renderNews();
+}
+
+if(localStorage.getItem("adminLogged")==="1"){
+  showAdmin();
+}
+
+function addNews(){
+  const title=document.getElementById("title").value;
+  const text=document.getElementById("text").value;
+  const img=document.getElementById("image").files[0];
+
+  if(!title || !text) return alert("Vyplň vše");
+
+  const reader=new FileReader();
+  reader.onload=()=>{
+    const news=JSON.parse(localStorage.getItem("news")||"[]");
+    news.unshift({
+      title,
+      text,
+      img:reader.result,
+      date:new Date().toLocaleString()
+    });
+    localStorage.setItem("news",JSON.stringify(news));
+    renderNews();
+    document.getElementById("title").value="";
+    document.getElementById("text").value="";
+    document.getElementById("image").value="";
+  };
+  if(img) reader.readAsDataURL(img);
+  else reader.onload();
+}
+
+function renderNews(){
+  const news=JSON.parse(localStorage.getItem("news")||"[]");
+  const list=document.getElementById("newsList");
+  list.innerHTML="";
+  news.forEach(n=>{
+    const div=document.createElement("div");
+    div.className="news-item";
+    div.innerHTML=`
+      <strong>${n.title}</strong><br>
+      <small>${n.date}</small>
+      <p>${n.text}</p>
+      ${n.img ? `<img src="${n.img}">`:""}
+    `;
+    list.appendChild(div);
+  });
+}
+</script>
+
+</body>
+</html>
