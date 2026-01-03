@@ -236,3 +236,61 @@ input, textarea{
     font-size:14px;
   }
 }
+
+/* ============================
+   MOBILE LAYOUT PATCH
+   ============================ */
+
+/* Zabrání horizontálnímu scrollu */
+html, body{
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+/* Header padding je moc široký */
+@media(max-width:900px){
+  .header{
+    padding-left:16px !important;
+    padding-right:16px !important;
+  }
+}
+
+/* Hamburger byl tlačen mimo obrazovku */
+@media(max-width:900px){
+  .burger{
+    margin-right:0 !important;
+    position:relative;
+    right:0;
+  }
+}
+
+/* Formuláře a boxy nepřetékají */
+@media(max-width:900px){
+  .box{
+    padding:25px !important;
+    margin:30px 12px !important;
+    max-width:100%;
+  }
+
+  .form-row{
+    width:100%;
+  }
+
+  input, textarea, select{
+    width:100%;
+    box-sizing:border-box;
+  }
+}
+
+/* Oprava tabulek, iframe, obrázků */
+img, iframe, table{
+  max-width:100%;
+}
+
+/* Hero text se nevejde → zmenšit */
+@media(max-width:900px){
+  .hero-text{
+    width:100%;
+    box-sizing:border-box;
+  }
+}
